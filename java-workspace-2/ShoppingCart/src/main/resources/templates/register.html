@@ -1,0 +1,66 @@
+
+<!doctype html>
+<html lang="en">
+  <head th:replace="/fragments/head"></head>
+  <body>
+
+  <nav th:replace = "/fragments/nav :: nav-front"></nav>
+
+  <div class="container-fluid mt-5">
+    <div class="row">
+      <div th:replace="/fragments/categories"></div>
+      <div class="col" ></div>
+      <div class="col-6" >
+        <h3 class="display-4">Register</h3>
+        
+     <form method="post" th:object="${user}" th:action="@{/register}">
+    
+       <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">There are errors</div>
+       
+       <div class="form-group">
+          <label for="">UserName:</label>
+          <textarea type = "text" th:field="*{username}" rows="3" class="form-control" placeholder="UserName"></textarea>
+          <span class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+       </div>
+       
+       <div class="form-group">
+          <label for="">Password</label>
+          <textarea type = "password" th:field="*{password}" rows="3" class="form-control" ></textarea>
+          <span class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+       </div>
+       
+       <div class="form-group">
+          <label for="">Confirm Password</label>
+          <textarea type = "password" th:field="*{confirmPassword}" rows="3" class="form-control" ></textarea>
+          <span th:if="${passwordMatchProblem}">Password does not match</span>
+       </div>
+       
+       <div class="form-group">
+          <label for="">Email:</label>
+          <textarea type = "email" th:field="*{email}" rows="3" class="form-control" placeholder="Email" required></textarea>
+          <span class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+       </div>
+       
+       <div class="form-group">
+          <label for="">Phone number:</label>
+          <textarea type = "text" th:field="*{phoneNumber}" rows="3" class="form-control" placeholder="Phone NUMBER"></textarea>
+          <span class="error" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></span>
+       </div>
+       
+       
+       <button class="btn btn-danger">Register</button>
+    
+    
+    </form> 
+        
+      </div>
+      <div class="col"></div>
+    </div>
+  </div>   
+
+
+  <div th:replace= "/fragments/footer"> </div>
+
+</body>
+
+</html>
